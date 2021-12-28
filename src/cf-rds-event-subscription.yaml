@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Create RDS Event Subscription"
+# ------------------------------------------------------------#
+# Input Parameters
+# ------------------------------------------------------------#
+Parameters:
+  SNSTopic:
+    Description: Please type the SNS Topic ARN.
+    Type: String
+Resources:
+  # ------------------------------------------------------------#
+  # RDS EventSubscription
+  # https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/aws-resource-rds-eventsubscription.html
+  # SourceType: db-instance | db-cluster | db-parameter-group | db-security-group | db-snapshot | db-cluster-snapshot
+  # ------------------------------------------------------------#
+  RDSEventSubscriptionInstance:
+    Type: "AWS::RDS::EventSubscription"
+    Properties:
+      Enabled: true
+      SnsTopicArn: !Ref SNSTopic
+      SourceType: "db-instance"
+  RDSEventSubscriptionCluster:
+    Type: "AWS::RDS::EventSubscription"
+    Properties:
+      Enabled: true
+      SnsTopicArn: !Ref SNSTopic
+      SourceType: "db-cluster"
+  RDSEventSubscriptionParameterGroup:
+    Type: "AWS::RDS::EventSubscription"
+    Properties:
+      Enabled: true
+      SnsTopicArn: !Ref SNSTopic
+      SourceType: "db-parameter-group"
+  RDSEventSubscriptionSecurityGroup:
+    Type: "AWS::RDS::EventSubscription"
+    Properties:
+      Enabled: true
+      SnsTopicArn: !Ref SNSTopic
+      SourceType: "db-security-group"
+  RDSEventSubscriptionSnapshot:
+    Type: "AWS::RDS::EventSubscription"
+    Properties:
+      Enabled: true
+      SnsTopicArn: !Ref SNSTopic
+      SourceType: "db-snapshot"
+  RDSEventSubscriptionClusterSnapshot:
+    Type: "AWS::RDS::EventSubscription"
+    Properties:
+      Enabled: true
+      SnsTopicArn: !Ref SNSTopic
+      SourceType: "db-cluster-snapshot"
